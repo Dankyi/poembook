@@ -12,9 +12,11 @@ class PoemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $poems = Poem::query()->orderByDesc('created_at')->paginate(5);
+        //dd($poems);
+
+        return view('poems.index', compact('poems'));
     }
 
     /**

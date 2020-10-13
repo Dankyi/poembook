@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PoemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware ('auth') -> group (function () {
 
+//    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::get('/', [PoemController::class, 'index'])->name('index');
+
+});
