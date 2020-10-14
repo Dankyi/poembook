@@ -24,9 +24,8 @@ class PoemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view ('poems.create');
     }
 
     /**
@@ -35,9 +34,22 @@ class PoemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        request()->validate ([
+            'title' => 'required',
+            'content' => 'required',
+            'writer' => 'required|min:2|max:32',
+        ]);
+
+        $poem = new Poem();
+
+        $poem->title = $request['title'];
+        $poem->content = $request['content'];
+        $poem->writer = $request['writer'];
+
+        $poem->save();
+
+        return redirect ('/'); // Return user to the homepage
     }
 
     /**

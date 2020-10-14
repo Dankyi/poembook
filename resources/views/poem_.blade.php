@@ -16,13 +16,18 @@
             </div>
 
             <div class="w-full p-6">
-                <p>
+                <p style="text-align: justify">
                     {{ $poem->content }}
                 </p>
                 <br/><br/>
                 <p>
                 <h3 class="font-bold mb-2">
                     Written By: {{ $poem->writer }}
+                </h3>
+                </p>
+                <p>
+                <h3>
+                    Published: {{ $poem->created_at }}
                 </h3>
                 </p>
             </div>

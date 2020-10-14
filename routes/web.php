@@ -25,5 +25,8 @@ Route::middleware ('auth') -> group (function () {
 //    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/', [PoemController::class, 'index'])->name('index');
+    Route::get('/poem/', [PoemController::class, 'create'])->name('poem.create');
+    Route::post('/poem/', [PoemController::class, 'store'])->name('poem.store');
+
 
 });
