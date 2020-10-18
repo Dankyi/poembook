@@ -23,8 +23,6 @@
             </div>
             @enderror
 
-
-
             <label for="writer">Written By:</label>
             <input class="inputs-styler @error ('writer') border border-red-500 @enderror"
                    type="text" name="writer" data-lpignore="true" autocomplete="off"
@@ -36,9 +34,6 @@
             </div>
             @enderror
 
-
-
-
             <label for="content">Content:</label>
             <textarea class="inputs-styler @error ('content') border border-red-500 @enderror"
                    type="text" name="content" data-lpignore="true" style="height:300px;text-align: justify;white-space: pre-line;"
@@ -49,7 +44,6 @@
                 {{ $message }}
             </div>
             @enderror
-
 
             <a href="/">
                 <button class="btn-href-styler" style="margin:5px;" type="button"><i class="fas fa-paw mr-2"></i>Cancel</button>

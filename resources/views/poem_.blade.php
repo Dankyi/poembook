@@ -1,4 +1,5 @@
 <div class="flex items-center">
+
     <div class="poems-container">
 
         @if (session('status'))
@@ -16,7 +17,7 @@
             </div>
 
             <div class="w-full p-6">
-                <p style="text-align: justify">
+                <p style="text-align: justify;white-space: pre-line;">
                     {{ $poem->content }}
                 </p>
                 <br/><br/>
@@ -30,6 +31,22 @@
                     Published: {{ $poem->created_at }}
                 </h3>
                 </p>
+            </div>
+
+            <div style="position: relative;">
+                <div style="display: inline-block;float: left;">
+                    <form method="post" action="{{ $poem->path() }}">
+                        @method ('DELETE')
+                        @csrf
+                        <button class="btn-href-styler" style="margin:5px; font-size: 15px;" type="submit"><i class="fas fa-paw mr-2"></i>Delete</button>
+                    </form>
+                </div>
+
+                <div style="display: inline-block;float: left;">
+                    <a href="{{ $poem->path('edit')}}">
+                        <button class="btn-href-styler" style="margin:5px; font-size: 15px;" type="button"><i class="fas fa-paw mr-2"></i>Edit</button>
+                    </a>
+                </div>
             </div>
 
         </div><br/><br/>

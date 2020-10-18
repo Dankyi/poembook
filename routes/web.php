@@ -14,19 +14,18 @@ use App\Http\Controllers\PoemController;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Auth::routes();
 
 Route::middleware ('auth') -> group (function () {
 
-//    Route::get('/home', [HomeController::class, 'index'])->name('home');
-
     Route::get('/', [PoemController::class, 'index'])->name('index');
+
     Route::get('/poem/', [PoemController::class, 'create'])->name('poem.create');
     Route::post('/poem/', [PoemController::class, 'store'])->name('poem.store');
 
+    Route::get('/poem/{poem}/edit', [PoemController::class, 'edit'])->name('poem.edit');
+    Route::patch('/poem/{poem}/', [PoemController::class, 'update'])->name('poem.update');
+
+    Route::delete('/poem/{poem}/', [PoemController::class, 'destroy'])->name('poem.destroy');
 
 });
