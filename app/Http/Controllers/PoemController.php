@@ -40,7 +40,7 @@ class PoemController extends Controller
 
     public function show(Poem $poem)
     {
-        //
+        return view ('poems.show', compact ('poem'));
     }
 
     public function edit(Poem $poem)

@@ -28,4 +28,5 @@ Route::middleware ('auth') -> group (function () {
 
     Route::delete('/poem/{poem}/', [PoemController::class, 'destroy'])->name('poem.destroy');
 
+    Route::get('/poem/{poem}/', [PoemController::class, 'show'])->name('poem.show');
 });

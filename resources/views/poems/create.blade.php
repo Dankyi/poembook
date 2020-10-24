@@ -2,8 +2,8 @@
 
 @section ('header')
     <div class="addnew-container">
-            <h1 style="text-align:center;font-size:30px">Add New Poem Form</h1>
-    </div>
+            <h1 class="h1-styler">Add New Poem Form</h1>
+    </div><br/>
 @endsection
 
 @section ('content')
@@ -18,7 +18,7 @@
                    placeholder="Enter the title of your poem here.." required/>
 
             @error ('title')
-            <div class="alert-message">
+            <div class="error-msg">
                 {{ $message }}
             </div>
             @enderror
@@ -29,7 +29,7 @@
                    placeholder="Enter writer(s) name here.." required/>
 
             @error ('writer')
-            <div class="alert-message">
+            <div class="error-msg">
                 {{ $message }}
             </div>
             @enderror
@@ -40,15 +40,15 @@
                    autocomplete="off" placeholder="Enter the content of your poem here.." required></textarea>
 
             @error ('content')
-            <div class="alert-message">
+            <div class="error-msg">
                 {{ $message }}
             </div>
             @enderror
 
             <a href="/">
-                <button class="btn-href-styler" style="margin:5px;" type="button"><i class="fas fa-paw mr-2"></i>Cancel</button>
+                <button class="btn-href-styler" type="button">Cancel</button>
             </a>
-            <button class="btn-href-styler" style="margin:5px;" type="submit"><i class="fas fa-paw mr-2"></i>Add Poem</button>
+            <button class="btn-href-styler" type="submit">Add Poem</button>
 
         </form>
     </div>

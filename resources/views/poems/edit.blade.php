@@ -2,11 +2,11 @@
 
 @section ('header')
     <div class="addnew-container">
-        <div style="display: inline-block;float: left;margin:5px;">
-            <h1 style="text-align:center;font-size:30px;float:left;">Edit Poem with Title:</h1>
+        <div class="divs-on-sides">
+            <h1 class="h1-styler">Edit Poem with Title:</h1>
         </div>
-        <div style="display: inline-block;float: left;margin:5px;">
-            <h1 style="text-align:center;font-size:30px;float:right; color: blue;">{{$poem->title}}</h1>
+        <div class="divs-on-sides">
+            <h1 class="h1-styler" style="color: blue;">{{$poem->title}}</h1>
         </div>
     </div><br/><br/>
 @endsection
@@ -24,7 +24,7 @@
                    value="{{$poem->title}}" required/>
 
             @error ('title')
-            <div class="alert-message">
+            <div class="error-msg">
                 {{ $message }}
             </div>
             @enderror
@@ -35,7 +35,7 @@
                    value="{{$poem->writer}}" required/>
 
             @error ('writer')
-            <div class="alert-message">
+            <div class="error-msg">
                 {{ $message }}
             </div>
             @enderror
@@ -46,15 +46,15 @@
                       autocomplete="off" required>{{$poem->content}}</textarea>
 
             @error ('content')
-            <div class="alert-message">
+            <div class="error-msg">
                 {{ $message }}
             </div>
             @enderror
 
             <a href="/">
-                <button class="btn-href-styler" style="margin:5px;" type="button"><i class="fas fa-paw mr-2"></i>Cancel</button>
+                <button class="btn-href-styler" type="button">Cancel</button>
             </a>
-            <button class="btn-href-styler" style="margin:5px;" type="submit"><i class="fas fa-paw mr-2"></i>Update Poem</button>
+            <button class="btn-href-styler" type="submit">Update Poem</button>
 
         </form>
     </div>
