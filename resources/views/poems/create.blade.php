@@ -35,8 +35,8 @@
             @enderror
 
             <label for="content">Content:</label>
-            <textarea class="inputs-styler @error ('content') border border-red-500 @enderror"
-                   type="text" name="content" data-lpignore="true" style="height:300px;text-align: justify;white-space: pre-line;"
+            <textarea class="inputs-styler content-styler @error ('content') border border-red-500 @enderror"
+                   type="text" name="content" data-lpignore="true" style="height:300px;"
                    autocomplete="off" placeholder="Enter the content of your poem here.." required></textarea>
 
             @error ('content')
@@ -52,5 +52,4 @@
 
         </form>
     </div>
-
 @endsection

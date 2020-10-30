@@ -40,12 +40,12 @@ class PoemController extends Controller
 
     public function show(Poem $poem)
     {
-        return view ('poems.show', compact ('poem'));
+        return view('poems.show', compact('poem'));
     }
 
     public function edit(Poem $poem)
     {
-        return view('poems.edit', compact ('poem'));
+        return view('poems.edit', compact('poem'));
     }
 
     public function update(Request $request, Poem $poem)
@@ -56,7 +56,7 @@ class PoemController extends Controller
             'writer' => 'required|min:2|max:32',
         ]);
 
-        $poem -> update ($values);
+        $poem->update($values);
 
         return redirect()->route('index');
     }

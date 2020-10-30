@@ -4,13 +4,12 @@
     <div class="poems-container">
         <div class="text-4xl mb-8">
             <h1 class="h1-styler">Selected Poem Details:</h1>
-            <button class="btn-href-styler" style="text-align:right;float:right;">Email Me Poem</button>
+            <button class="btn-href-styler btn-right-styler">Email Me Poem</button>
         </div>
     </div><br/><br/><br/><br/>
 @endsection
 
 @section ('content')
-
     <div class="flex items-center">
 
         <div class="poems-container">
@@ -30,7 +29,7 @@
                 </div>
 
                 <div class="w-full p-6">
-                    <p style="text-align:justify;white-space: pre-line;">
+                    <p class="content-styler">
                         {{ $poem->content }}
                     </p>
                     <br/><br/>
@@ -65,5 +64,4 @@
             </div><br/><br/>
         </div>
     </div>
-
 @endsection

@@ -17,7 +17,7 @@
             </div>
 
             <div class="w-full p-6">
-                <p style="text-align: justify;white-space: pre-line;">
+                <p class="content-styler">
                     {{ $poem->content }}
                 </p>
                 <br/><br/>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="divs-on-sides">
-                    <a href="{{ $poem->path('edit')}}">
+                    <a href="{{ $poem->path('edit') }}">
                         <button class="btn-href-styler" type="button">Edit</button>
                     </a>
                 </div>

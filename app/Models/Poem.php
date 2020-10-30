@@ -10,11 +10,12 @@ class Poem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content', 'writer'
+        'title',
+        'content',
+        'writer'
     ];
 
     public function path ($append = "") {
-
-        return "/poem/" . $this -> id . "/" . $append;
+        return "/poem/" . $this->id . "/" . $append;
     }
 }
