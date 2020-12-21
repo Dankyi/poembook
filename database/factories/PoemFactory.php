@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Poem;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PoemFactory extends Factory
@@ -14,10 +15,12 @@ class PoemFactory extends Factory
             'Summer of Love', 'Mother Goose', 'Place of Love', 'Songs of Innocence', 'As I see it'
         ];
 
+        $users = User::all();
+
         return [
             'title' => $title[array_rand($title)],
             'content' => $this->faker->paragraph(3),
-            'writer' => $this->faker->name
+            'user_id' => $users->random()->id
         ];
     }
 }

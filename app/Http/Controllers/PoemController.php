@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Poem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PoemController extends Controller
 {
@@ -21,17 +22,18 @@ class PoemController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         request()->validate ([
             'title' => 'required',
             'content' => 'required',
-            'writer' => 'required|min:2|max:32',
         ]);
 
         $poem = new Poem();
 
         $poem->title = $request['title'];
         $poem->content = $request['content'];
-        $poem->writer = $request['writer'];
+        $poem->user_id = $user->id;
 
         $poem->save();
 
@@ -53,7 +55,6 @@ class PoemController extends Controller
         $values = request()->validate ([
             'title' => 'required|min:2|max:60',
             'content' => 'required',
-            'writer' => 'required|min:2|max:32',
         ]);
 
         $poem->update($values);

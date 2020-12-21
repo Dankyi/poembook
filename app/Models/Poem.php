@@ -12,10 +12,13 @@ class Poem extends Model
     protected $fillable = [
         'title',
         'content',
-        'writer'
     ];
 
     public function path ($append = "") {
         return "/poem/" . $this->id . "/" . $append;
+    }
+
+    public function user () {
+        return $this->belongsTo(User::class);
     }
 }

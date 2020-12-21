@@ -29,17 +29,6 @@
             </div>
             @enderror
 
-            <label for="writer">Written By:</label>
-            <input class="inputs-styler @error ('writer') border border-red-500 @enderror"
-                   type="text" name="writer" data-lpignore="true" autocomplete="off"
-                   value="{{ $poem->writer }}" required/>
-
-            @error ('writer')
-            <div class="error-msg">
-                {{ $message }}
-            </div>
-            @enderror
-
             <label for="content">Content:</label>
             <textarea class="inputs-styler content-styler @error ('content') border border-red-500 @enderror"
                       type="text" name="content" data-lpignore="true" style="height:300px"

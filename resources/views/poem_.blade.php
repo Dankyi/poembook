@@ -23,7 +23,7 @@
                 <br/><br/>
                 <p>
                 <h3 class="font-bold mb-2">
-                    Written By: {{ $poem->writer }}
+                    Written By: {{ $poem->user->name }}
                 </h3>
                 </p>
                 <p>
