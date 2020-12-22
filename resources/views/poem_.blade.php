@@ -34,19 +34,21 @@
             </div>
 
             <div style="position: relative;">
-                <div class="divs-on-sides">
-                    <form method="post" action="{{ $poem->path() }}">
-                        @method ('DELETE')
-                        @csrf
-                        <button class="btn-href-styler" type="submit">Delete</button>
-                    </form>
-                </div>
+                @if (Auth::id() == $poem->user_id)
+                    <div class="divs-on-sides">
+                        <form method="post" action="{{ $poem->path() }}">
+                            @method ('DELETE')
+                            @csrf
+                            <button class="btn-href-styler" type="submit">Delete</button>
+                        </form>
+                    </div>
 
-                <div class="divs-on-sides">
-                    <a href="{{ $poem->path('edit') }}">
-                        <button class="btn-href-styler" type="button">Edit</button>
-                    </a>
-                </div>
+                    <div class="divs-on-sides">
+                        <a href="{{ $poem->path('edit') }}">
+                            <button class="btn-href-styler" type="button">Edit</button>
+                        </a>
+                    </div>
+                @endif
 
                 <div class="divs-on-sides">
                     <a href="{{ $poem->path() }}">
