@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section ('header')
-    <div class="poems-container">
-        <div class="text-4xl mb-8">
-            <h1 class="h1-styler">Latest Poem Feeds:</h1>
-            <a href="/poem/" class="btn-href-styler btn-right-styler">Write New Poem</a>
+    <div class="container mx-auto max-w-3xl">
+        <div>
+            <h1 class="text-3xl font-bold mt-5 mb-5">Latest Poem Feeds:</h1>
         </div>
-    </div><br/><br/><br/><br/>
+        <div class="flex justify-end">
+            <a href="/poem/" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Write New Poem</a>
+        </div>
+    </div><br/><br/>
 @endsection
 
 @section ('content')
@@ -18,9 +20,7 @@
         @endforeach
     </div>
 
-    <div class="poems-container">
-        <div class="pagination-styler">
+    <div class="flex justify-end container mx-auto max-w-3xl">
         {{ $poems->render() }}
-        </div>
-    </div>
+    </div><br/><br/>
 @endsection

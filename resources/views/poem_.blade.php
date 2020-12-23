@@ -1,6 +1,6 @@
 <div class="flex items-center">
 
-    <div class="poems-container">
+    <div class="container mx-auto max-w-3xl">
 
         @if (session('status'))
             <div class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4" role="alert">
@@ -10,14 +10,14 @@
 
         <div class="flex flex-col break-words bg-blue-200 border border-2 rounded shadow-md">
 
-            <div class="font-semibold bg-blue-400 py-3 px-6 mb-0">
+            <div class="bg-blue-400 py-3 px-6 mb-0">
                 <h2 class="text-x1 font-bold mb-2">
                     {{ $poem->title }}
                 </h2>
             </div>
 
             <div class="w-full p-6">
-                <p class="content-styler">
+                <p class="text-justify whitespace-pre-line">
                     {{ $poem->content }}
                 </p>
                 <br/><br/>
@@ -33,30 +33,45 @@
                 </p>
             </div>
 
-            <div style="position: relative;">
+            <div class="bg-blue-400 py-3 px-6 mb-0 flex justify-center space-x-15">
                 @if (Auth::id() == $poem->user_id)
-                    <div class="divs-on-sides">
-                        <form method="post" action="{{ $poem->path() }}">
+                    <div class="inline-block">
+                        <form method="post" action="{{ $poem->path() }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this poem?')">
                             @method ('DELETE')
                             @csrf
-                            <button class="btn-href-styler" type="submit">Delete</button>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
                         </form>
                     </div>
 
-                    <div class="divs-on-sides">
+                    <div class="inline-block">
                         <a href="{{ $poem->path('edit') }}">
-                            <button class="btn-href-styler" type="button">Edit</button>
+                            <i class="fas fa-edit"></i>
                         </a>
                     </div>
                 @endif
 
-                <div class="divs-on-sides">
+                <div class="inline-block">
                     <a href="{{ $poem->path() }}">
-                        <button class="btn-href-styler" type="button">View</button>
+                        <i class="fas fa-eye"></i>
                     </a>
                 </div>
+
+                    <div class="inline-block">
+                        <a href="{{ $poem->path('like') }}">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <div class="inline-block">
+                        <a href="{{ $poem->path('dislike') }}">
+                            <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
             </div>
 
-        </div><br/><br/>
+        </div><br/><br/><br/><br/>
     </div>
 </div>

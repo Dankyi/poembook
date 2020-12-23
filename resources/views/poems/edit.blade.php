@@ -1,27 +1,27 @@
 @extends ('layouts.app')
 
 @section ('header')
-    <div class="addnew-container">
-        <div class="divs-on-sides">
-            <h1 class="h1-styler">Edit Poem with Title:</h1>
-        </div>
-        <div class="divs-on-sides">
-            <h1 class="h1-styler" style="color: blue;">{{ $poem->title }}</h1>
-        </div>
-    </div><br/><br/>
+    <div class="flex justify-center">
+        <h1 class="text-3xl font-bold mt-8 mb-5">Edit Poem</h1>
+    </div>
 @endsection
 
 @section ('content')
-    <div class="addnew-container font-semibold bg-blue-400 py-3 px-6 mb-0">
+    <div class="container mx-auto max-w-3xl bg-blue-400 py-3 px-6 mb-0">
 
         <form method="post" action="{{ $poem->path() }}">
             @method ('PATCH')
             @csrf
 
-            <label for="title">Poem Title:</label>
-            <input class="inputs-styler @error ('title') border border-red-500 @enderror"
-                   type="text" name="title" data-lpignore="true" autocomplete="off"
-                   value="{{ $poem->title }}" required/>
+            <div>
+                <label class="font-semibold">Poem Title:</label>
+            </div><br/>
+
+            <div>
+                <input class="w-full rounded-lg border-2 p-4 @error ('title') border border-red-500 @enderror"
+                       type="text" name="title" data-lpignore="true" autocomplete="off"
+                       placeholder="Enter the title of your poem here.." value="{{ $poem->title }}" required/>
+            </div><br/><br/>
 
             @error ('title')
             <div class="error-msg">
@@ -29,10 +29,14 @@
             </div>
             @enderror
 
-            <label for="content">Content:</label>
-            <textarea class="inputs-styler content-styler @error ('content') border border-red-500 @enderror"
-                      type="text" name="content" data-lpignore="true" style="height:300px"
-                      autocomplete="off" required>{{ $poem->content }}</textarea>
+            <div>
+                <label class="font-semibold">Content:</label>
+            </div><br/>
+            <div>
+                <textarea class="w-full rounded-lg border-2 p-4 text-justify whitespace-pre-line @error ('content') border border-red-500 @enderror"
+                      type="text" name="content" data-lpignore="true" style="height:300px" autocomplete="off"
+                      placeholder="Enter the content of your poem here ..." required>{{ $poem->content }}</textarea>
+            </div><br/>
 
             @error ('content')
             <div class="error-msg">
@@ -40,10 +44,12 @@
             </div>
             @enderror
 
-            <a href="/">
-                <button class="btn-href-styler" type="button">Cancel</button>
-            </a>
-            <button class="btn-href-styler" type="submit">Update Poem</button>
+            <div class="flex justify-end space-x-6">
+                <a href="/">
+                    <button type="button" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Cancel</button>
+                </a>
+                <button class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded" type="submit">Update Poem</button>
+            </div>
 
         </form>
     </div>
