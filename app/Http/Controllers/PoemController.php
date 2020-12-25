@@ -87,6 +87,9 @@ class PoemController extends Controller
             $like->poem_id = $poem_id;
 
             $like->save();
+
+        } elseif ($userLikeQuery == 1) {
+            $this->destroyLike($poem);
         }
 
         $userLike = $this->userLikeQuery($poem);
@@ -114,5 +117,17 @@ class PoemController extends Controller
             ->count();
 
         return $likesCount;
+    }
+
+    public function destroyLike(Poem $poem)
+    {
+        $user_id = Auth::id();
+
+        $userLikeQuery = DB::table('likes')
+            ->where('user_id', '=', $user_id)
+            ->where('poem_id', '=', $poem->id)
+            ->delete();
+
+        return $userLikeQuery;
     }
 }

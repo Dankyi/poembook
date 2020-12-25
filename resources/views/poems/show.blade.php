@@ -76,9 +76,9 @@
                             @csrf
                             <button>
                                 @if($userLike > 0)
-                                    <span class="fa fa-thumbs-up fa-lg"> ({{ $likesCount }})</span>
+                                    <span class="fa fa-thumbs-up fa-lg"> {{ $likesCount }}</span>
                                 @else
-                                    <span class="fa fa-thumbs-o-up fa-lg"> ({{ $likesCount }})</span>
+                                    <span class="fa fa-thumbs-o-up fa-lg"> {{ $likesCount }}</span>
                                 @endif
                             </button>
                         </form>
