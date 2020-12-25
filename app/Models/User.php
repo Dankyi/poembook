@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function poems() {
         return $this->hasMany(Poem::class);
     }
+
+    public function likes () {
+        return $this->hasMany(Like::class);
+    }
 }

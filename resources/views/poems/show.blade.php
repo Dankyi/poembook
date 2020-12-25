@@ -71,6 +71,19 @@
                         </div>
                     @endif
 
+                    <div class="inline-block">
+                        <form method="post" action="{{ $poem->path() }}">
+                            @csrf
+                            <button>
+                                @if($userLike > 0)
+                                    <span class="fa fa-thumbs-up fa-lg"> ({{ $likesCount }})</span>
+                                @else
+                                    <span class="fa fa-thumbs-o-up fa-lg"> ({{ $likesCount }})</span>
+                                @endif
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
             </div><br/><br/>
         </div>
