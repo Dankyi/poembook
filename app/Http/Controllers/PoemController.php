@@ -10,7 +10,7 @@ class PoemController extends Controller
 {
     public function index()
     {
-        $poems = Poem::query()->orderByDesc('created_at')->paginate(5);
+        $poems = Poem::query()->orderByDesc('updated_at')->paginate(5);
 
         return view('poems.index', compact('poems'));
     }

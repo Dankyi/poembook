@@ -10,68 +10,37 @@
 
         <div class="flex flex-col break-words bg-blue-200 border border-2 rounded shadow-md">
 
-            <div class="bg-blue-400 py-3 px-6 mb-0">
-                <h2 class="text-x1 font-bold mb-2">
-                    {{ $poem->title }}
-                </h2>
+            <div class="flex justify-between bg-blue-400 py-3 px-6 mb-0">
+                <div>
+                    <h2 class="text-x1 font-bold mb-2 py-1 px-3">
+                        {{ $poem->title }}
+                    </h2>
+                </div>
+
+                <div>
+                    <a href="{{ $poem->path() }}">
+                        <button class="fas fa-eye fa-lg bg-blue-500 hover:bg-blue-700 py-2 px-3 rounded">View</button>
+                    </a>
+                </div>
             </div>
 
             <div class="w-full p-6">
                 <p class="text-justify whitespace-pre-line">
-                    {{ $poem->content }}
-                </p>
-                <br/><br/>
+                    @if(strlen($poem->content) > 300)
+                        {{ substr($poem->content, 0, 300) }} <a class="font-bold mb-2 text-blue-900" href="{{ $poem->path() }}"> ... Read More</a>
+                    @else
+                        {{ $poem->content }}
+                    @endif
+                </p><br/><br/>
+
                 <p>
-                <h3 class="font-bold mb-2">
-                    Written By: {{ $poem->user->name }}
-                </h3>
+                    <h3 class="font-bold mb-2">Written By: {{ $poem->user->name }}</h3>
                 </p>
+
                 <p>
-                <h3>
-                    Published: {{ $poem->created_at }}
-                </h3>
+                    <h3>Published: {{ date('j M Y, H:i', strtotime($poem->created_at)) }}</h3>
                 </p>
             </div>
-
-            <div class="bg-blue-400 py-3 px-6 mb-0 flex justify-center space-x-15">
-                @if (Auth::id() == $poem->user_id)
-                    <div class="inline-block">
-                        <form method="post" action="{{ $poem->path() }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this poem?')">
-                            @method ('DELETE')
-                            @csrf
-                            <button class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="inline-block">
-                        <a href="{{ $poem->path('edit') }}">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </div>
-                @endif
-
-                <div class="inline-block">
-                    <a href="{{ $poem->path() }}">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
-
-                    <div class="inline-block">
-                        <a href="{{ $poem->path('like') }}">
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                        </a>
-                    </div>
-
-                    <div class="inline-block">
-                        <a href="{{ $poem->path('dislike') }}">
-                            <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                        </a>
-                    </div>
-
-            </div>
-
         </div><br/><br/><br/><br/>
     </div>
 </div>

@@ -2,10 +2,18 @@
 
 @section ('header')
     <div class="container mx-auto max-w-3xl">
-        <div class="flex justify-start">
+        <div class="flex justify-center">
             <h1 class="text-3xl font-bold mt-5 mb-5">Selected Poem Details:</h1>
         </div>
-        <div class="flex justify-end">
+    </div><br/>
+
+    <div class="flex justify-between container mx-auto max-w-3xl">
+        <div>
+            <a href="/">
+                <button class="text-white fas fa-home fa-lg bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded"> Home</button>
+            </a>
+        </div>
+        <div>
             <button type="button" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Email Me Poem</button>
         </div>
     </div><br/><br/>
@@ -33,18 +41,36 @@
                 <div class="w-full p-6">
                     <p class="text-justify whitespace-pre-line">
                         {{ $poem->content }}
-                    </p>
-                    <br/><br/>
+                    </p><br/><br/>
+
                     <p>
-                    <h3 class="font-bold mb-2">
-                        Written By: {{ $poem->writer }}
-                    </h3>
+                    <h3 class="font-bold mb-2">Written By: {{ $poem->user->name }}</h3>
                     </p>
+
                     <p>
-                    <h3>
-                        Published: {{ $poem->created_at }}
-                    </h3>
+                    <h3>Published: {{ date('j M Y, H:i', strtotime($poem->created_at)) }}</h3>
                     </p>
+                </div>
+
+                <div class="bg-blue-400 py-3 px-6 mb-0 flex justify-center space-x-15">
+                    @if (Auth::id() == $poem->user_id)
+                        <div class="inline-block">
+                            <form method="post" action="{{ $poem->path() }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this poem?')">
+                                @method ('DELETE')
+                                @csrf
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="inline-block">
+                            <a href="{{ $poem->path('edit') }}">
+                                <i class="fas fa-edit fa-lg"></i>
+                            </a>
+                        </div>
+                    @endif
+
                 </div>
             </div><br/><br/>
         </div>

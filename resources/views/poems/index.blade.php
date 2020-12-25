@@ -20,7 +20,7 @@
         @endforeach
     </div>
 
-    <div class="flex justify-end container mx-auto max-w-3xl">
+    <div class="flex justify-center container mx-auto max-w-3xl">
         {{ $poems->render() }}
     </div><br/><br/>
 @endsection
