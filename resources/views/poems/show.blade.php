@@ -10,7 +10,7 @@
     <div class="flex justify-between container mx-auto max-w-3xl">
         <div>
             <a href="/">
-                <button class="text-white fas fa-home fa-lg bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded"> Home</button>
+                <button class="text-white fas fa-home bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded"> Home</button>
             </a>
         </div>
         <div>
