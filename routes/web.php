@@ -32,4 +32,6 @@ Route::middleware ('auth') -> group (function () {
 
     Route::post('/poem/{poem}/like', [PoemController::class, 'like'])->name('poem.like');
     Route::post('/poem/{poem}/dislike', [PoemController::class, 'dislike'])->name('poem.dislike');
+
+    Route::post('/poem/{poem}/favorite', [PoemController::class, 'favorite'])->name('poem.favorite');
 });

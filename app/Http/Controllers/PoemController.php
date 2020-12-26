@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dislike;
+use App\Models\Favorite;
 use App\Models\Like;
 use App\Models\Poem;
 use Illuminate\Http\Request;
@@ -51,12 +52,17 @@ class PoemController extends Controller
         $userDislike = $this->userDislikeQuery($poem);
         $dislikesCount = $this->dislikesCount($poem);
 
-        $data=[
+        $userFavorite = $this->userFavoriteQuery($poem);
+        $favoritesCount = $this->favoritesCount($poem);
+
+        $data = [
             'poem' => $poem,
             'userLike' => $userLike,
             'likesCount' => $likesCount,
             'userDislike' => $userDislike,
-            'dislikesCount' => $dislikesCount
+            'dislikesCount' => $dislikesCount,
+            'userFavorite' => $userFavorite,
+            'favoritesCount' => $favoritesCount
         ];
 
         return view('poems.show', $data);
@@ -210,5 +216,68 @@ class PoemController extends Controller
             ->delete();
 
         return $userDislikeQuery;
+    }
+
+    public function favorite(Poem $poem)
+    {
+        $user_id = Auth::id();
+        $userFavoriteQuery = $this->userFavoriteQuery($poem);
+
+        if ($userFavoriteQuery < 1) {
+            $poem_id = $poem->id;
+
+            $favorite = new Favorite();
+            $favorite->user_id = $user_id;
+            $favorite->poem_id = $poem_id;
+
+            $favorite->save();
+
+        } elseif ($userFavoriteQuery == 1) {
+            $this->destroyFavorite($poem);
+        }
+
+        $userFavorite = $this->userFavoriteQuery($poem);
+        $favoritesCount = $this->favoritesCount($poem);
+
+        $data=[
+            'poem' => $poem,
+            'userFavorite' => $userFavorite,
+            'favoritesCount' => $favoritesCount
+        ];
+
+        return back()->with(['data' => $data]);
+    }
+
+    public function userFavoriteQuery(Poem $poem)
+    {
+        $user_id = Auth::id();
+
+        $userFavoriteQuery = DB::table('favorites')
+            ->where('user_id', '=', $user_id)
+            ->where('poem_id', '=', $poem->id)
+            ->count();
+
+        return $userFavoriteQuery;
+    }
+
+    public function favoritesCount(Poem $poem)
+    {
+        $favoritesCount = DB::table('favorites')
+            ->where('poem_id', '=', $poem->id)
+            ->count();
+
+        return $favoritesCount;
+    }
+
+    public function destroyFavorite(Poem $poem)
+    {
+        $user_id = Auth::id();
+
+        $userFavoriteQuery = DB::table('favorites')
+            ->where('user_id', '=', $user_id)
+            ->where('poem_id', '=', $poem->id)
+            ->delete();
+
+        return $userFavoriteQuery;
     }
 }

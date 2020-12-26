@@ -96,6 +96,19 @@
                             </button>
                         </form>
                     </div>
+
+                    <div>
+                        <form method="post" action="{{ $poem->path('favorite') }}">
+                            @csrf
+                            <button>
+                                @if($userFavorite > 0)
+                                    <span class="fas fa-star fa-lg"> {{ $favoritesCount }}</span>
+                                @else
+                                    <span class="far fa-star fa-lg"> {{ $favoritesCount }}</span>
+                                @endif
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div><br/><br/>
         </div>

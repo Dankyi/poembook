@@ -29,4 +29,8 @@ class Poem extends Model
     public function dislikes () {
         return $this->hasMany(Dislike::class);
     }
+
+    public function favorites () {
+        return $this->hasMany(Favorite::class);
+    }
 }
