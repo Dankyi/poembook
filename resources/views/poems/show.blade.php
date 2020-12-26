@@ -72,7 +72,7 @@
                     @endif
 
                     <div class="inline-block">
-                        <form method="post" action="{{ $poem->path() }}">
+                        <form method="post" action="{{ $poem->path('like') }}">
                             @csrf
                             <button>
                                 @if($userLike > 0)
@@ -84,6 +84,18 @@
                         </form>
                     </div>
 
+                    <div>
+                        <form method="post" action="{{ $poem->path('dislike') }}">
+                            @csrf
+                            <button>
+                                @if($userDislike > 0)
+                                    <span class="fa fa-thumbs-down fa-lg"> {{ $dislikesCount }}</span>
+                                @else
+                                    <span class="fa fa-thumbs-o-down fa-lg"> {{ $dislikesCount }}</span>
+                                @endif
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div><br/><br/>
         </div>

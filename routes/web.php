@@ -30,5 +30,6 @@ Route::middleware ('auth') -> group (function () {
 
     Route::get('/poem/{poem}/', [PoemController::class, 'show'])->name('poem.show');
 
-    Route::post('/poem/{poem}/', [PoemController::class, 'like'])->name('poem.like');
+    Route::post('/poem/{poem}/like', [PoemController::class, 'like'])->name('poem.like');
+    Route::post('/poem/{poem}/dislike', [PoemController::class, 'dislike'])->name('poem.dislike');
 });

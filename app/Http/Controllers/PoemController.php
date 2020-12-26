@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dislike;
 use App\Models\Like;
 use App\Models\Poem;
 use Illuminate\Http\Request;
@@ -47,7 +48,18 @@ class PoemController extends Controller
         $userLike = $this->userLikeQuery($poem);
         $likesCount = $this->likesCount($poem);
 
-        return view('poems.show', compact('poem', 'likesCount', 'userLike'));
+        $userDislike = $this->userDislikeQuery($poem);
+        $dislikesCount = $this->dislikesCount($poem);
+
+        $data=[
+            'poem' => $poem,
+            'userLike' => $userLike,
+            'likesCount' => $likesCount,
+            'userDislike' => $userDislike,
+            'dislikesCount' => $dislikesCount
+        ];
+
+        return view('poems.show', $data);
     }
 
     public function edit(Poem $poem)
@@ -95,7 +107,13 @@ class PoemController extends Controller
         $userLike = $this->userLikeQuery($poem);
         $likesCount = $this->likesCount($poem);
 
-        return view ('poems.show', compact ('poem', 'likesCount', 'userLike'));
+        $data=[
+            'poem' => $poem,
+            'userLike' => $userLike,
+            'likesCount' => $likesCount
+        ];
+
+        return back()->with(['data' => $data]);
     }
 
     public function userLikeQuery(Poem $poem)
@@ -129,5 +147,68 @@ class PoemController extends Controller
             ->delete();
 
         return $userLikeQuery;
+    }
+
+    public function dislike(Poem $poem)
+    {
+        $user_id = Auth::id();
+        $userDislikeQuery = $this->userDislikeQuery($poem);
+
+        if ($userDislikeQuery < 1) {
+            $poem_id = $poem->id;
+
+            $dislike = new Dislike();
+            $dislike->user_id = $user_id;
+            $dislike->poem_id = $poem_id;
+
+            $dislike->save();
+
+        } elseif ($userDislikeQuery == 1) {
+            $this->destroyDislike($poem);
+        }
+
+        $userDislike = $this->userDislikeQuery($poem);
+        $dislikesCount = $this->dislikesCount($poem);
+
+        $data=[
+            'poem' => $poem,
+            'userDislike' => $userDislike,
+            'dislikesCount' => $dislikesCount
+        ];
+
+        return back()->with(['data' => $data]);
+    }
+
+    public function userDislikeQuery(Poem $poem)
+    {
+        $user_id = Auth::id();
+
+        $userDislikeQuery = DB::table('dislikes')
+            ->where('user_id', '=', $user_id)
+            ->where('poem_id', '=', $poem->id)
+            ->count();
+
+        return $userDislikeQuery;
+    }
+
+    public function dislikesCount(Poem $poem)
+    {
+        $dislikesCount = DB::table('dislikes')
+            ->where('poem_id', '=', $poem->id)
+            ->count();
+
+        return $dislikesCount;
+    }
+
+    public function destroyDislike(Poem $poem)
+    {
+        $user_id = Auth::id();
+
+        $userDislikeQuery = DB::table('dislikes')
+            ->where('user_id', '=', $user_id)
+            ->where('poem_id', '=', $poem->id)
+            ->delete();
+
+        return $userDislikeQuery;
     }
 }
