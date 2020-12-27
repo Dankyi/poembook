@@ -34,4 +34,5 @@ Route::middleware ('auth') -> group (function () {
     Route::post('/poem/{poem}/dislike', [PoemController::class, 'dislike'])->name('poem.dislike');
 
     Route::post('/poem/{poem}/favorite', [PoemController::class, 'favorite'])->name('poem.favorite');
+    Route::get('/myfavorites/', [PoemController::class, 'myfavorites'])->name('poem.myfavorites');
 });

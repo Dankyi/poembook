@@ -221,4 +221,15 @@ class PoemController extends Controller
 
         return $userFavoriteQuery;
     }
+
+    public function myfavorites()
+    {
+        $userFavoritePoems = DB::table('favorites')
+            ->join('poems', 'poems.id', '=', 'favorites.poem_id')
+            ->join('users', 'users.id', '=', 'poems.user_id')
+            ->where('favorites.user_id', '=', Auth::id())
+            ->paginate(5);
+
+        return view('poems.myfavorites', compact('userFavoritePoems'));
+    }
 }
