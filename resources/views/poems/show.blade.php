@@ -10,11 +10,11 @@
     <div class="flex justify-between container mx-auto max-w-3xl">
         <div>
             <a href="/">
-                <button class="text-white fas fa-home bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded"> Home</button>
+                <button class="text-white fas fa-home focus:outline-none bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded"> Home</button>
             </a>
         </div>
         <div>
-            <button type="button" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Email Me Poem</button>
+            <button type="button" class="text-white focus:outline-none bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Email Me Poem</button>
         </div>
     </div><br/><br/>
 @endsection
@@ -58,7 +58,7 @@
                             <form method="post" action="{{ $poem->path() }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this poem?')">
                                 @method ('DELETE')
                                 @csrf
-                                <button class="btn btn-danger btn-sm">
+                                <button class="focus:outline-none">
                                     <i class="fas fa-trash-alt fa-lg"></i>
                                 </button>
                             </form>
@@ -66,7 +66,7 @@
 
                         <div class="inline-block">
                             <a href="{{ $poem->path('edit') }}">
-                                <i class="fas fa-edit fa-lg"></i>
+                                <i class="focus:outline-none fas fa-edit fa-lg"></i>
                             </a>
                         </div>
                     @endif
@@ -74,11 +74,13 @@
                     <div class="inline-block">
                         <form method="post" action="{{ $poem->path('like') }}">
                             @csrf
-                            <button>
+                            <button class="focus:outline-none">
                                 @if($userLike > 0)
-                                    <span class="fa fa-thumbs-up fa-lg"> {{ $likesCount }}</span>
+                                    <i class="fa fa-thumbs-up fa-lg"></i>
+                                    <span class="text-lg">{{ $likesCount }}</span>
                                 @else
-                                    <span class="fa fa-thumbs-o-up fa-lg"> {{ $likesCount }}</span>
+                                    <i class="fa fa-thumbs-o-up fa-lg"></i>
+                                    <span class="text-lg">{{ $likesCount }}</span>
                                 @endif
                             </button>
                         </form>
@@ -87,11 +89,13 @@
                     <div>
                         <form method="post" action="{{ $poem->path('dislike') }}">
                             @csrf
-                            <button>
+                            <button class="focus:outline-none">
                                 @if($userDislike > 0)
-                                    <span class="fa fa-thumbs-down fa-lg"> {{ $dislikesCount }}</span>
+                                    <i class="fa fa-thumbs-down fa-lg"></i>
+                                    <span class="text-lg">{{ $dislikesCount }}</span>
                                 @else
-                                    <span class="fa fa-thumbs-o-down fa-lg"> {{ $dislikesCount }}</span>
+                                    <i class="fa fa-thumbs-o-down fa-lg"></i>
+                                    <span class="text-lg">{{ $dislikesCount }}</span>
                                 @endif
                             </button>
                         </form>
@@ -100,11 +104,13 @@
                     <div>
                         <form method="post" action="{{ $poem->path('favorite') }}">
                             @csrf
-                            <button>
+                            <button class="focus:outline-none">
                                 @if($userFavorite > 0)
-                                    <span class="fas fa-star fa-lg"> {{ $favoritesCount }}</span>
+                                    <i class="fas fa-star fa-lg"></i>
+                                    <span class="text-lg">{{ $favoritesCount }}</span>
                                 @else
-                                    <span class="far fa-star fa-lg"> {{ $favoritesCount }}</span>
+                                    <i class="far fa-star fa-lg"></i>
+                                    <span class="text-lg">{{ $favoritesCount }}</span>
                                 @endif
                             </button>
                         </form>

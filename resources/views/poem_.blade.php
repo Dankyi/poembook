@@ -19,7 +19,7 @@
 
                 <div>
                     <a href="{{ $poem->path() }}">
-                        <button class="fas fa-eye bg-blue-500 hover:bg-blue-700 py-2 px-3 rounded"> View Poem</button>
+                        <button class="fas fa-eye bg-blue-500 focus:outline-none hover:bg-blue-700 py-2 px-3 rounded"> View</button>
                     </a>
                 </div>
             </div>
