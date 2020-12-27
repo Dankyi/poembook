@@ -47,7 +47,7 @@
                     <button type="button" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Cancel</button>
                 </a>
 
-                <button type="button" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Add Poem</button>
+                <button type="submit" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Add Poem</button>
             </div>
         </form>
     </div>

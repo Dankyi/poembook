@@ -26,8 +26,6 @@ class PoemController extends Controller
 
     public function store(Request $request)
     {
-        $user = Auth::user();
-
         request()->validate ([
             'title' => 'required|min:3|max:60',
             'content' => 'required|min:250',
@@ -37,7 +35,7 @@ class PoemController extends Controller
 
         $poem->title = $request['title'];
         $poem->content = $request['content'];
-        $poem->user_id = $user->id;
+        $poem->user_id = Auth::id();
 
         $poem->save();
 
@@ -46,23 +44,14 @@ class PoemController extends Controller
 
     public function show(Poem $poem)
     {
-        $userLike = $this->userLikeQuery($poem);
-        $likesCount = $this->likesCount($poem);
-
-        $userDislike = $this->userDislikeQuery($poem);
-        $dislikesCount = $this->dislikesCount($poem);
-
-        $userFavorite = $this->userFavoriteQuery($poem);
-        $favoritesCount = $this->favoritesCount($poem);
-
         $data = [
             'poem' => $poem,
-            'userLike' => $userLike,
-            'likesCount' => $likesCount,
-            'userDislike' => $userDislike,
-            'dislikesCount' => $dislikesCount,
-            'userFavorite' => $userFavorite,
-            'favoritesCount' => $favoritesCount
+            'userLike' => $this->userLikeQuery($poem),
+            'likesCount' => $this->likesCount($poem),
+            'userDislike' => $this->userDislikeQuery($poem),
+            'dislikesCount' => $this->dislikesCount($poem),
+            'userFavorite' => $this->userFavoriteQuery($poem),
+            'favoritesCount' => $this->favoritesCount($poem)
         ];
 
         return view('poems.show', $data);
@@ -82,7 +71,7 @@ class PoemController extends Controller
 
         $poem->update($values);
 
-        return redirect()->route('index');
+        return redirect()->route('poem.show', ['poem' => $poem]);
     }
 
     public function destroy(Poem $poem)
@@ -94,40 +83,26 @@ class PoemController extends Controller
 
     public function like(Poem $poem)
     {
-        $user_id = Auth::id();
-        $userLikeQuery = $this->userLikeQuery($poem);
-
-        if ($userLikeQuery < 1) {
+        if ($this->userLikeQuery($poem) < 1) {
             $poem_id = $poem->id;
 
             $like = new Like();
-            $like->user_id = $user_id;
+            $like->user_id = Auth::id();
             $like->poem_id = $poem_id;
 
             $like->save();
 
-        } elseif ($userLikeQuery == 1) {
+        } elseif ($this->userLikeQuery($poem) == 1) {
             $this->destroyLike($poem);
         }
 
-        $userLike = $this->userLikeQuery($poem);
-        $likesCount = $this->likesCount($poem);
-
-        $data=[
-            'poem' => $poem,
-            'userLike' => $userLike,
-            'likesCount' => $likesCount
-        ];
-
-        return back()->with(['data' => $data]);
+        return back();
     }
 
     public function userLikeQuery(Poem $poem)
     {
-        $user_id = Auth::id();
-
         $userLikeQuery = DB::table('likes')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', Auth::id())
             ->where('poem_id', '=', $poem->id)
             ->count();
 
@@ -145,10 +120,8 @@ class PoemController extends Controller
 
     public function destroyLike(Poem $poem)
     {
-        $user_id = Auth::id();
-
         $userLikeQuery = DB::table('likes')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', Auth::id())
             ->where('poem_id', '=', $poem->id)
             ->delete();
 
@@ -157,40 +130,26 @@ class PoemController extends Controller
 
     public function dislike(Poem $poem)
     {
-        $user_id = Auth::id();
-        $userDislikeQuery = $this->userDislikeQuery($poem);
-
-        if ($userDislikeQuery < 1) {
+        if ($this->userDislikeQuery($poem) < 1) {
             $poem_id = $poem->id;
 
             $dislike = new Dislike();
-            $dislike->user_id = $user_id;
+            $dislike->user_id = Auth::id();
             $dislike->poem_id = $poem_id;
 
             $dislike->save();
 
-        } elseif ($userDislikeQuery == 1) {
+        } elseif ($this->userDislikeQuery($poem) == 1) {
             $this->destroyDislike($poem);
         }
 
-        $userDislike = $this->userDislikeQuery($poem);
-        $dislikesCount = $this->dislikesCount($poem);
-
-        $data=[
-            'poem' => $poem,
-            'userDislike' => $userDislike,
-            'dislikesCount' => $dislikesCount
-        ];
-
-        return back()->with(['data' => $data]);
+        return back();
     }
 
     public function userDislikeQuery(Poem $poem)
     {
-        $user_id = Auth::id();
-
         $userDislikeQuery = DB::table('dislikes')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', Auth::id())
             ->where('poem_id', '=', $poem->id)
             ->count();
 
@@ -208,10 +167,8 @@ class PoemController extends Controller
 
     public function destroyDislike(Poem $poem)
     {
-        $user_id = Auth::id();
-
         $userDislikeQuery = DB::table('dislikes')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', Auth::id())
             ->where('poem_id', '=', $poem->id)
             ->delete();
 
@@ -220,40 +177,26 @@ class PoemController extends Controller
 
     public function favorite(Poem $poem)
     {
-        $user_id = Auth::id();
-        $userFavoriteQuery = $this->userFavoriteQuery($poem);
-
-        if ($userFavoriteQuery < 1) {
+        if ($this->userFavoriteQuery($poem) < 1) {
             $poem_id = $poem->id;
 
             $favorite = new Favorite();
-            $favorite->user_id = $user_id;
+            $favorite->user_id = Auth::id();
             $favorite->poem_id = $poem_id;
 
             $favorite->save();
 
-        } elseif ($userFavoriteQuery == 1) {
+        } elseif ($this->userFavoriteQuery($poem) == 1) {
             $this->destroyFavorite($poem);
         }
 
-        $userFavorite = $this->userFavoriteQuery($poem);
-        $favoritesCount = $this->favoritesCount($poem);
-
-        $data=[
-            'poem' => $poem,
-            'userFavorite' => $userFavorite,
-            'favoritesCount' => $favoritesCount
-        ];
-
-        return back()->with(['data' => $data]);
+        return back();
     }
 
     public function userFavoriteQuery(Poem $poem)
     {
-        $user_id = Auth::id();
-
         $userFavoriteQuery = DB::table('favorites')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', Auth::id())
             ->where('poem_id', '=', $poem->id)
             ->count();
 
@@ -271,10 +214,8 @@ class PoemController extends Controller
 
     public function destroyFavorite(Poem $poem)
     {
-        $user_id = Auth::id();
-
         $userFavoriteQuery = DB::table('favorites')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', Auth::id())
             ->where('poem_id', '=', $poem->id)
             ->delete();
 

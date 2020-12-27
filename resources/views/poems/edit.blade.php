@@ -45,7 +45,7 @@
             @enderror
 
             <div class="flex justify-end space-x-6">
-                <a href="/">
+                <a href="{{ $poem->path() }}">
                     <button type="button" class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Cancel</button>
                 </a>
                 <button class="text-white bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded" type="submit">Update Poem</button>
