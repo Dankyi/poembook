@@ -30,7 +30,7 @@
                 </div>
             @endif
 
-            <div class="flex flex-col break-words bg-blue-200 border border-2 rounded shadow-md">
+            <div class="flex flex-col break-words bg-blue-200 border border-2 rounded shadow-2xl">
 
                 <div class="bg-blue-400 py-3 px-6 mb-0">
                     <h2 class="text-x1 font-bold mb-2">

@@ -8,7 +8,7 @@
             </div>
         @endif
 
-            <div class="flex flex-col break-words bg-blue-200 border border-2 rounded shadow-md">
+        <div class="flex flex-col break-words bg-blue-200 border border-2 rounded shadow-2xl">
 
             <div class="flex justify-between bg-blue-400 py-3 px-6 mb-0">
                 <div>
@@ -19,7 +19,7 @@
 
                 <div>
                     <a href="poem/{{ $favoritePoems->poem_id }}">
-                    <button class="fas fa-eye bg-blue-500 focus:outline-none hover:bg-blue-700 py-2 px-3 rounded"> View</button>
+                        <button class="fas fa-eye bg-blue-500 focus:outline-none hover:bg-blue-700 py-2 px-3 rounded"> View</button>
                     </a>
                 </div>
             </div>
