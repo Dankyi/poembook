@@ -13,12 +13,12 @@
             <div class="flex justify-between bg-blue-400 py-3 px-6 mb-0">
                 <div>
                     <h2 class="text-x1 font-bold mb-2 py-1 px-3">
-                        {{ $poem->title }}
+                        {{ $searchResult->title }}
                     </h2>
                 </div>
 
                 <div>
-                    <a href="{{ $poem->path() }}">
+                    <a href="poem/{{ $searchResult->id }}">
                         <button class="fas fa-eye bg-blue-500 focus:outline-none hover:bg-blue-700 py-2 px-3 rounded"> View</button>
                     </a>
                 </div>
@@ -26,19 +26,19 @@
 
             <div class="w-full p-6">
                 <p class="text-justify whitespace-pre-line">
-                    @if(strlen($poem->content) > 250)
-                        {{ substr($poem->content, 0, 250) . '...' }} <a class="no-underline hover:underline font-bold mb-2 text-blue-900" href="{{ $poem->path() }}">Read More</a>
+                    @if(strlen($searchResult->content) > 250)
+                        {{ substr($searchResult->content, 0, 250) }} <a class="font-bold mb-2 text-blue-900" href="poem/{{ $searchResult->id }}"> ... Read More</a>
                     @else
-                        {{ $poem->content }}
+                        {{ $searchResult->content }}
                     @endif
                 </p><br/><br/>
 
                 <p>
-                    <h3 class="font-bold mb-2">Written By: {{ $poem->user->name }}</h3>
+                <h3 class="font-bold mb-2">Written By: {{ $searchResult->name }}</h3>
                 </p>
 
                 <p>
-                    <h3>Published: {{ date('j M Y, H:i', strtotime($poem->created_at)) }}</h3>
+                <h3>Published: {{ date('j M Y, H:i', strtotime($searchResult->created_at)) }}</h3>
                 </p>
             </div>
         </div><br/><br/><br/><br/>

@@ -18,7 +18,8 @@
             </div><br/>
 
             <div>
-                <input class="w-full rounded-lg border-2 p-4 @error ('title') border border-red-500 @enderror"
+                <input class="w-full rounded-lg border-2 p-4 focus:outline-none
+                       focus:border-blue-700 @error ('title') border border-red-500 @enderror"
                        type="text" name="title" data-lpignore="true" autocomplete="off"
                        placeholder="Enter the title of your poem here ..." value="{{ $poem->title }}" required/>
             </div><br/><br/>
@@ -33,9 +34,10 @@
                 <label class="font-semibold">Content:</label>
             </div><br/>
             <div>
-                <textarea class="w-full rounded-lg border-2 p-4 text-justify whitespace-pre-line @error ('content') border border-red-500 @enderror"
-                      type="text" name="content" data-lpignore="true" rows="22" autocomplete="off"
-                      placeholder="Enter the content of your poem here ..." required>{{ $poem->content }}</textarea>
+                <textarea class="w-full rounded-lg border-2 p-4 text-justify whitespace-pre-line focus:outline-none
+                          focus:border-blue-700 @error ('content') border border-red-500 @enderror"
+                          type="text" name="content" data-lpignore="true" rows="22" autocomplete="off"
+                          placeholder="Enter the content of your poem here ..." required>{{ $poem->content }}</textarea>
             </div><br/>
 
             @error ('content')

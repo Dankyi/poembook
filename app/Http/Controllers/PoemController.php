@@ -26,7 +26,7 @@ class PoemController extends Controller
 
     public function store(Request $request)
     {
-        request()->validate ([
+        request()->validate([
             'title' => 'required|min:3|max:60',
             'content' => 'required|min:250',
         ]);
@@ -231,5 +231,23 @@ class PoemController extends Controller
             ->paginate(5);
 
         return view('poems.myfavorites', compact('userFavoritePoems'));
+    }
+
+    public function search(Request $request)
+    {
+        request()->validate([
+            'user_input' => 'required',
+        ]);
+
+        $userInput = $_GET['user_input'];
+
+        $searchResults = DB::table('users')
+            ->join('poems', 'poems.user_id', '=', 'users.id')
+            ->where('name', 'LIKE', '%' . $userInput . '%')
+            ->orWhere('title', 'LIKE', '%' . $userInput . '%')
+            ->orWhere('content', 'LIKE', '%' . $userInput . '%')
+            ->paginate(5);
+
+        return view('poems.search-results', compact('searchResults', 'userInput'));
     }
 }

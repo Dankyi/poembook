@@ -2,13 +2,13 @@
 
 @section ('header')
     <div class="container mx-auto max-w-3xl">
-        @if (count($userFavoritePoems) == 0)
+        @if (count($searchResults) == 0)
             <div class="flex justify-center">
-                <h1 class="text-3xl font-normal mt-5 mb-5">You have no favorites</h1>
+                <h1 class="text-2xl font-normal mt-5 mb-5">No record matched: "{{ $userInput }}"</h1>
             </div>
         @else
             <div class="flex justify-center">
-                <h1 class="text-3xl font-bold mt-5 mb-5">Your Favorite Poems</h1>
+                <h1 class="text-2xl font-normal mt-5 mb-5">Search results for: "{{ $userInput }}"</h1>
             </div>
         @endif
     </div><br/>
@@ -24,14 +24,14 @@
 
 @section ('content')
     <div>
-        @foreach($userFavoritePoems as $favoritePoems)
+        @foreach($searchResults as $searchResult)
             <div>
-                @include('favorites_')
+                @include('search_')
             </div>
         @endforeach
     </div>
 
     <div class="flex justify-center container mx-auto max-w-3xl">
-        {{ $userFavoritePoems->render() }}
+        {{ $searchResults->render() }}
     </div><br/><br/>
 @endsection
