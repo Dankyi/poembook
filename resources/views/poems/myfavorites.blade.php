@@ -2,9 +2,15 @@
 
 @section ('header')
     <div class="container mx-auto max-w-3xl">
-        <div class="flex justify-center">
-            <h1 class="text-3xl font-bold mt-5 mb-5">Your Favorite Poems</h1>
-        </div>
+        @if (count($userFavoritePoems) == 0)
+            <div class="flex justify-center">
+                <h1 class="text-3xl font-light mt-5 mb-5">You have no favorites</h1>
+            </div>
+        @else
+            <div class="flex justify-center">
+                <h1 class="text-3xl font-bold mt-5 mb-5">Your Favorite Poems</h1>
+            </div>
+        @endif
     </div><br/>
 
     <div class="flex justify-start container mx-auto max-w-3xl">

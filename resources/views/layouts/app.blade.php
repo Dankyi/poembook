@@ -54,7 +54,6 @@
                                 </form>
                             </div>
                         </div>
-
                     @endguest
                 </nav>
             </div>
@@ -89,10 +88,10 @@
     <div class="container mx-auto px-6">
         <div class="mt-20 border-t-2 border-gray-300 flex flex-col items-center">
             <div class="sm:w-2/3 text-center py-6">
-                <p class="text-sm text-blue-700 font-bold mb-2">
+                <p class="text-sm text-blue-800 font-bold mb-2">
                     © 2020 by Ebenezer Dankyi Boateng
                 </p><br/>
-                <p class="text-sm text-blue-700 font-bold mb-2">
+                <p class="text-sm text-blue-800 font-bold mb-2">
                     Email: u1669769@unimail.hud.ac.uk
                 </p>
             </div>
