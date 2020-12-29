@@ -75,12 +75,12 @@
                         <form method="post" action="{{ $poem->path('like') }}">
                             @csrf
                             <button class="focus:outline-none">
-                                @if($userLike > 0)
+                                @if(($poem->likes()->where('user_id', '=', Auth::id())->count()) > 0)
                                     <i class="fa fa-thumbs-up fa-lg"></i>
-                                    <span class="text-lg">{{ $likesCount }}</span>
+                                    <span class="text-lg">{{ $poem->likes()->count() }}</span>
                                 @else
                                     <i class="fa fa-thumbs-o-up fa-lg"></i>
-                                    <span class="text-lg">{{ $likesCount }}</span>
+                                    <span class="text-lg">{{ $poem->likes()->count() }}</span>
                                 @endif
                             </button>
                         </form>
@@ -90,12 +90,12 @@
                         <form method="post" action="{{ $poem->path('dislike') }}">
                             @csrf
                             <button class="focus:outline-none">
-                                @if($userDislike > 0)
+                                @if(($poem->dislikes()->where('user_id', '=', Auth::id())->count()) > 0)
                                     <i class="fa fa-thumbs-down fa-lg"></i>
-                                    <span class="text-lg">{{ $dislikesCount }}</span>
+                                    <span class="text-lg">{{ $poem->dislikes()->count() }}</span>
                                 @else
                                     <i class="fa fa-thumbs-o-down fa-lg"></i>
-                                    <span class="text-lg">{{ $dislikesCount }}</span>
+                                    <span class="text-lg">{{ $poem->dislikes()->count() }}</span>
                                 @endif
                             </button>
                         </form>
@@ -105,12 +105,12 @@
                         <form method="post" action="{{ $poem->path('favorite') }}">
                             @csrf
                             <button class="focus:outline-none">
-                                @if($userFavorite > 0)
+                                @if(($poem->favorites()->where('user_id', '=', Auth::id())->count()) > 0)
                                     <i class="fas fa-star fa-lg"></i>
-                                    <span class="text-lg">{{ $favoritesCount }}</span>
+                                    <span class="text-lg">{{ $poem->favorites()->count() }}</span>
                                 @else
                                     <i class="far fa-star fa-lg"></i>
-                                    <span class="text-lg">{{ $favoritesCount }}</span>
+                                    <span class="text-lg">{{ $poem->favorites()->count() }}</span>
                                 @endif
                             </button>
                         </form>
