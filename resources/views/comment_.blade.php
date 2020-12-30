@@ -4,7 +4,7 @@
             @csrf
             <br/>
             <div>
-                <textarea class="w-full rounded-lg border-2 p-4 text-justify whitespace-pre-line focus:outline-none
+                <textarea id="add-comment-input" class="w-full rounded-lg border-2 p-4 text-justify whitespace-pre-line focus:outline-none
                           focus:border-blue-700 @error ('content') border border-red-500 @enderror"
                           name="comment" data-lpignore="true" rows="5" autocomplete="off"
                           placeholder="Enter comment here . . ." required>{{ old('content') }}</textarea>
@@ -17,7 +17,7 @@
             @enderror
 
             <div class="flex justify-end space-x-6">
-                <button id="cancel-btn" type="button" class="text-white bg-blue-800 focus:outline-none hover:bg-blue-700 py-2 px-4 rounded">Cancel</button>
+                <button id="add-cancel-btn" type="button" class="text-white bg-blue-800 focus:outline-none hover:bg-blue-700 py-2 px-4 rounded">Cancel</button>
                 <button id="add-comment-btn" type="submit" class="text-white bg-blue-800 focus:outline-none hover:bg-blue-700 py-2 px-4 rounded">Add Comment</button>
             </div>
         </form>
@@ -33,7 +33,7 @@
 
     @if($poem->comments->count() > 0)
         @foreach(($poem->comments->all()) as $comment)
-            <div class="flex flex-col break-words bg-green-100 border border-2 rounded shadow-2xl w-full p-6">
+            <div class="flex flex-col break-words bg-blue-200 border border-2 rounded shadow-xl w-full p-6">
                 <p>
                 <h3 class="font-bold mb-2">Comment By: {{ $comment->user->name }}</h3>
                 </p>
@@ -45,25 +45,6 @@
                 <p class="text-justify whitespace-pre-line">
                     {{ $comment->comment }}
                 </p>
-            </div>
-            <div class="bg-green-200 py-3 px-6 mb-0 flex justify-center space-x-15">
-                @if (Auth::id() == $comment->user_id)
-                    <div class="inline-block">
-                        <form method="post" action="{{ $comment->path() }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this comment?')">
-                            @method ('DELETE')
-                            @csrf
-                            <button class="focus:outline-none">
-                                <i class="fas fa-trash-alt fa-lg"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="inline-block">
-                        <a class="focus:outline-none" href="{{ $comment->path('edit') }}">
-                            <i class="fas fa-edit fa-lg"></i>
-                        </a>
-                    </div>
-                @endif
             </div>
             <br/><br/><br/>
         @endforeach
@@ -78,9 +59,8 @@
         const commentsDiv = document.querySelector('#comments-div');
         const postCommentBtn = document.querySelector('#post-comment-btn');
         const postCommentFormDiv = document.querySelector('#post-comment-form-div');
-        const cancelBtn = document.querySelector('#cancel-btn');
+        const addCancelBtn = document.querySelector('#add-cancel-btn');
         const addCommentBtn = document.querySelector('#add-comment-btn');
-        const commentInput = document.querySelector('#comment-input');
 
         commentBtn.addEventListener('click', () => {
             commentsDiv.classList.toggle('hidden');
@@ -95,7 +75,7 @@
             commentBtn.setAttribute("disabled", "disabled");
         });
 
-        cancelBtn.addEventListener('click', () => {
+        addCancelBtn.addEventListener('click', () => {
             commentsDiv.classList.toggle('hidden');
             commentsDiv.classList.toggle('flex');
             postCommentFormDiv.classList.toggle('hidden');
@@ -104,7 +84,9 @@
         });
 
         addCommentBtn.addEventListener('click', () => {
-            if (commentInput.value() > 1) {
+            const addCommentInput = document.querySelector('#add-comment-input');
+
+            if (addCommentInput.value() > 1) {
                 postCommentFormDiv.classList.toggle('hidden');
                 postCommentFormDiv.classList.toggle('flex');
                 commentsDiv.classList.toggle('hidden');

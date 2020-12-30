@@ -17,7 +17,6 @@ class Comment extends Model
         return "/comment/" . $this->id . "/" . $append;
     }
 
-
     public function user () {
         return $this->belongsTo(User::class);
     }

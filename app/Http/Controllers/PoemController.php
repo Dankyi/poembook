@@ -166,11 +166,4 @@ class PoemController extends Controller
 
         return back();
     }
-
-    public function destroyComment(Comment $comment)
-    {
-        $comment->delete();
-
-        return back();
-    }
 }
