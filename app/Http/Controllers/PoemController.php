@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Dislike;
 use App\Models\Favorite;
 use App\Models\Like;
 use App\Models\Poem;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -45,6 +45,11 @@ class PoemController extends Controller
 
     public function show(Poem $poem)
     {
+//        $comments = $poem->comments->all();
+//        dd($comments);
+
+//        return view('poems.show', compact('poem', 'comments'));
+
         return view('poems.show', compact('poem'));
     }
 
@@ -123,7 +128,7 @@ class PoemController extends Controller
         return back();
     }
 
-    public function myfavorites(User $user)
+    public function myfavorites()
     {
         $userFavoritePoems = DB::table('favorites')
             ->join('poems', 'poems.id', '=', 'favorites.poem_id')
@@ -150,5 +155,28 @@ class PoemController extends Controller
             ->paginate(5);
 
         return view('poems.search-results', compact('searchResults', 'userInput'));
+    }
+
+
+
+
+
+
+
+
+
+    public function comment(Request $request, Poem $poem)
+    {
+        request()->validate([
+            'comment' => 'required|max:250',
+        ]);
+
+        $comment = new Comment();
+        $comment->comment = $request['comment'];
+        $comment->user_id = Auth::id();
+        $comment->poem_id = $poem->id;
+        $comment->save();
+
+        return back();
     }
 }

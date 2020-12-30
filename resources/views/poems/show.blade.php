@@ -65,8 +65,8 @@
                         </div>
 
                         <div class="inline-block">
-                            <a href="{{ $poem->path('edit') }}">
-                                <i class="focus:outline-none fas fa-edit fa-lg"></i>
+                            <a class="focus:outline-none" href="{{ $poem->path('edit') }}">
+                                <i class="fas fa-edit fa-lg"></i>
                             </a>
                         </div>
                     @endif
@@ -115,8 +115,22 @@
                             </button>
                         </form>
                     </div>
+
+                    <div>
+                        <button id="comment-btn" class="focus:outline-none">
+                            @if(($poem->comments()->count()) > 0)
+                                <i class="fas fa-comment fa-lg"></i>
+                                <span class="text-lg">{{ $poem->comments()->count() }}</span>
+                            @else
+                                <i class="far fa-comment fa-lg"></i>
+                                <span class="text-lg">{{ $poem->comments()->count() }}</span>
+                            @endif
+                        </button>
+                    </div>
                 </div>
-            </div><br/><br/>
+            </div><br/><br/><br/><br/>
+
+            @include('comment_')
         </div>
     </div>
 @endsection

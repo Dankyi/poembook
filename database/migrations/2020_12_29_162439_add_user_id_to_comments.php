@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePoemsTable extends Migration
+class AddUserIdToComments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreatePoemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('poems', function (Blueprint $table) {
-            $table->id();
-            $table->string('title', 60);
-            $table->text('content');
-            $table->timestamps();
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreignId('user_id');
         });
     }
 
@@ -28,6 +25,8 @@ class CreatePoemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('poems');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
     }
 }

@@ -33,4 +33,8 @@ class Poem extends Model
     public function favorites () {
         return $this->hasMany(Favorite::class);
     }
+
+    public function comments () {
+        return $this->hasMany(Comment::class);
+    }
 }
