@@ -46,6 +46,25 @@
                     {{ $comment->comment }}
                 </p>
             </div>
+            <div class="bg-green-200 py-3 px-6 mb-0 flex justify-center space-x-15">
+                @if (Auth::id() == $comment->user_id)
+                    <div class="inline-block">
+                        <form method="post" action="{{ $comment->path() }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this comment?')">
+                            @method ('DELETE')
+                            @csrf
+                            <button class="focus:outline-none">
+                                <i class="fas fa-trash-alt fa-lg"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="inline-block">
+                        <a class="focus:outline-none" href="{{ $comment->path('edit') }}">
+                            <i class="fas fa-edit fa-lg"></i>
+                        </a>
+                    </div>
+                @endif
+            </div>
             <br/><br/><br/>
         @endforeach
     @else

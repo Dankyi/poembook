@@ -39,4 +39,6 @@ Route::middleware ('auth') -> group (function () {
     Route::get('/search/', [PoemController::class, 'search'])->name('search');
 
     Route::post('/poem/{poem}/comment', [PoemController::class, 'comment'])->name('poem.comment');
+
+    Route::delete('/comment/{comment}/', [PoemController::class, 'destroyComment'])->name('comment.destroy');
 });

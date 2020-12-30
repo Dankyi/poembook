@@ -45,11 +45,6 @@ class PoemController extends Controller
 
     public function show(Poem $poem)
     {
-//        $comments = $poem->comments->all();
-//        dd($comments);
-
-//        return view('poems.show', compact('poem', 'comments'));
-
         return view('poems.show', compact('poem'));
     }
 
@@ -157,14 +152,6 @@ class PoemController extends Controller
         return view('poems.search-results', compact('searchResults', 'userInput'));
     }
 
-
-
-
-
-
-
-
-
     public function comment(Request $request, Poem $poem)
     {
         request()->validate([
@@ -176,6 +163,13 @@ class PoemController extends Controller
         $comment->user_id = Auth::id();
         $comment->poem_id = $poem->id;
         $comment->save();
+
+        return back();
+    }
+
+    public function destroyComment(Comment $comment)
+    {
+        $comment->delete();
 
         return back();
     }
