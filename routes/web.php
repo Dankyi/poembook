@@ -41,4 +41,7 @@ Route::middleware ('auth') -> group (function () {
     Route::post('/poem/{poem}/comment', [PoemController::class, 'comment'])->name('poem.comment');
 
     Route::view('/profile/edit', 'profile.edit')->name('profile');
+
+    Route::view('/profile/password', 'profile.password')->name('profile.password');
+
 });
