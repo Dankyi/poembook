@@ -30,8 +30,6 @@
                             @enderror
                         </div>
 
-
-
                         <div class="flex flex-wrap">
                             <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
                                 {{ __('E-Mail Address') }}:
@@ -48,12 +46,9 @@
                             @enderror
                         </div>
 
-
-
-
                         <div class="flex flex-wrap">
                             <button type="submit"
-                                    class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
+                                    class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal mb-8 focus:outline-none no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
                                 {{ __('Update Profile') }}
                             </button>
                         </div>
