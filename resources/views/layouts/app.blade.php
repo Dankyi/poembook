@@ -65,7 +65,7 @@
                                 <button id="notUserBtn" class="hidden absolute focus:outline-none inset-0 h-full w-full cursor-default"></button>
 
                                 <div id="dropdown" class="hidden absolute flex flex-col mt-7 py-2 w-48 text-black bg-blue-300 rounded-lg shadow-xl">
-                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="#">My Profile</a>
+                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('profile') }}">My Profile</a>
                                     <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('poem.myfavorites') }}">My Favorite Poems</a>
                                     <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('logout') }}"
                                        class="no-underline hover:underline"
