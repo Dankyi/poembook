@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PoemController;
 
@@ -29,6 +30,8 @@ Route::middleware (['auth', 'verified']) -> group (function () {
     Route::delete('/poem/{poem}/', [PoemController::class, 'destroy'])->name('poem.destroy');
 
     Route::get('/poem/{poem}/', [PoemController::class, 'show'])->name('poem.show');
+
+    Route::get('/poem/{poem}/email', [MailController::class, 'sendPoemDetails']);
 
     Route::post('/poem/{poem}/like', [PoemController::class, 'like'])->name('poem.like');
     Route::post('/poem/{poem}/dislike', [PoemController::class, 'dislike'])->name('poem.dislike');

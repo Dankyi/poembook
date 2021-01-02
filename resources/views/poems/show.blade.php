@@ -14,7 +14,9 @@
             </a>
         </div>
         <div>
-            <button type="button" class="text-white focus:outline-none bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">Email Me Poem</button>
+            <a href="{{ $poem->path('email') }}" type="button" class="text-white focus:outline-none bg-blue-800 hover:bg-blue-700 py-2 px-4 rounded">
+                Email Me Poem
+            </a>
         </div>
     </div><br/><br/>
 @endsection
