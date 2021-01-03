@@ -77,6 +77,12 @@
                     </div>
                 </form>
 
+                <div class="flex justify-between items-center">
+                    <hr class="w-full"><span class="p-1 text-gray-400 mb-3">OR</span><hr class="w-full">
+                </div>
+                <div class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8">
+                    <a href="{{ route('github.redirect') }}"><button class="uppercase rounded-lg h-12 mt-4 w-full text-white rounded bg-black hover:bg-blue-900"><i class="fab fa-github mr-2 fa-lg"></i>Github</button></a>
+                </div>
             </section>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PoemController;
@@ -16,6 +17,9 @@ use App\Http\Controllers\PoemController;
 */
 
 Auth::routes();
+
+Route::get('/auth/github/redirect', [GithubController::class, 'redirect'])->name('github.redirect');
+Route::get('/auth/github/callback', [GithubController::class, 'callback'])->name('github.callback');
 
 Route::middleware (['auth', 'verified']) -> group (function () {
 
