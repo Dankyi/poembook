@@ -81,8 +81,8 @@
                     <hr class="w-full"><span class="text-gray-400 mb-3">OR</span><hr class="w-full">
                 </div>
                 <div class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8">
-                    <a href="{{ route('google.redirect') }}"><button class="uppercase h-12 mt-4 text-white w-full rounded-lg bg-red-800 hover:bg-red-900"><i class="fa fa-google mr-2"></i>Google</button></a>
-                    <a href="{{ route('github.redirect') }}"><button class="uppercase h-12 mt-3 mb-5 text-white w-full rounded-lg bg-black hover:bg-gray-900"><i class="fab fa-github mr-2 fa-lg"></i>Github</button></a>
+                    <a href="{{ route('google.redirect') }}"><button class="uppercase h-12 mt-4 text-white w-full rounded-lg focus:outline-none bg-red-800 hover:bg-red-900"><i class="fa fa-google mr-2"></i>Google</button></a>
+                    <a href="{{ route('github.redirect') }}"><button class="uppercase h-12 mt-3 mb-5 text-white w-full rounded-lg focus:outline-none bg-black hover:bg-gray-900"><i class="fab fa-github mr-2 fa-lg"></i>Github</button></a>
                 </div>
             </section>
         </div>

@@ -27,7 +27,7 @@
             <div class="w-full p-6">
                 <p class="text-justify whitespace-pre-line">
                     @if(strlen($poem->content) > 250)
-                        {{ substr($poem->content, 0, 250) . '...' }} <a class="no-underline hover:underline font-bold mb-2 text-blue-900" href="{{ $poem->path() }}">Read More</a>
+                        {{ substr($poem->content, 0, 250) . '...' }} <a class="underline font-bold mb-2 text-blue-900" href="{{ $poem->path() }}">Read More</a>
                     @else
                         {{ $poem->content }}
                     @endif

@@ -13,11 +13,15 @@
 
 @section ('content')
     <div>
-        @foreach($poems as $poem)
-            <div>
-                @include('poem_')
-            </div>
-        @endforeach
+        @if($poems->count() > 0)
+            @foreach($poems as $poem)
+                <div>
+                    @include('poem_')
+                </div>
+            @endforeach
+        @else
+            <div class="flex justify-center"><h1 class="text-2xl font-thin mt-5 mb-5">There are no poem feeds ...</h1></div>
+        @endif
     </div>
 
     <div class="flex justify-center container mx-auto max-w-3xl">

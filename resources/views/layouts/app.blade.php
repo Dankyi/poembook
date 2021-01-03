@@ -37,7 +37,7 @@
                     @else
                         <div class="flex space-x-20">
                             <form method="get" action="{{ route('search') }}">
-                                <div class="flex space-x-2">
+                                <div class="flex">
                                     <div>
                                         <input class="w-96 rounded-lg text-black focus:outline-none
                                                focus:border-blue-500 border-2 px-3 py-1 @error ('search') border border-red-500 @enderror" type="search"
@@ -56,22 +56,21 @@
                             </form>
 
                             <div class="flex px-3 py-2">
-                                <button id="userBtn" class="flex space-x-2 block focus:outline-none ">
-                                    <i class="fas fa-user"></i>
+                                <button id="userBtn" class="flex space-x-2 block focus:outline-none">
                                     <span class="text-lg">{{ Auth::user()->name }}</span>
-                                    <i class="fas fa-caret-down fa-lg"></i>
+                                    <i class="mt-1 fas fa-angle-down"></i>
                                 </button>
 
                                 <button id="notUserBtn" class="hidden absolute focus:outline-none inset-0 h-full w-full cursor-default"></button>
 
                                 <div id="dropdown" class="hidden absolute flex flex-col mt-7 py-2 w-48 text-black bg-blue-300 rounded-lg shadow-xl">
-                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('profile') }}">My Profile</a>
-                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('poem.myfavorites') }}">My Favorite Poems</a>
-                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('profile.password') }}">Change Password</a>
+                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('profile') }}"><i class="fas fa-user"></i> My Profile</a>
+                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('poem.myfavorites') }}"><i class="fas fa-star"></i> My Favorite Poems</a>
+                                    <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('profile.password') }}"><i class="fas fa-lock"></i> Change Password</a>
                                     <a class="block px-4 py-2 hover:bg-blue-700 hover:text-white" href="{{ route('logout') }}"
                                        class="no-underline hover:underline"
                                        onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                   document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                                         {{ csrf_field() }}
                                     </form>
