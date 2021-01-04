@@ -11,9 +11,8 @@ class MailController extends Controller
 {
     public function sendPoemDetails (Poem $poem)
     {
-        Mail::to (Auth::user()->email)
-            -> send (new PoemDetailsEmail($poem));
+        Mail::to(Auth::user()->email)->send(new PoemDetailsEmail($poem));
 
-        return redirect()-> back ();
+        return back()->with('success', 'success');
     }
 }

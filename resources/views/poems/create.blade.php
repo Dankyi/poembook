@@ -8,7 +8,6 @@
 
 @section ('content')
     <div class="container mx-auto max-w-3xl bg-blue-400 py-3 px-6 mb-0 rounded shadow-2xl">
-
         <form method="post" action="/poem/">
             @csrf
 

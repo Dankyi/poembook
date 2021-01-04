@@ -40,7 +40,7 @@ class PoemController extends Controller
 
         $poem->save();
 
-        return redirect()->route('index');
+        return redirect()->route('index')->with('success', 'success');
     }
 
     public function show(Poem $poem)
@@ -62,7 +62,7 @@ class PoemController extends Controller
 
         $poem->update($values);
 
-        return redirect()->route('poem.show', ['poem' => $poem]);
+        return redirect()->route('poem.show', ['poem' => $poem])->with('updated', 'updated');
     }
 
     public function destroy(Poem $poem)
@@ -164,6 +164,6 @@ class PoemController extends Controller
         $comment->poem_id = $poem->id;
         $comment->save();
 
-        return back();
+        return back()->with('comment', 'comment');
     }
 }

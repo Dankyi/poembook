@@ -2,6 +2,20 @@
 
 @section ('header')
     <div class="container mx-auto max-w-3xl">
+        @if(session('success'))
+            <div class="text-white mt-10 px-6 py-4 border-0 rounded relative mb-4 bg-green-500">
+            <span class="text-xl inline-block mr-5 align-middle">
+                <i class="fas fa-check-circle"></i>
+            </span>
+                <span class="inline-block align-middle mr-8">
+                Poem posted successfully!
+            </span>
+                <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
+                    <span>×</span>
+                </button>
+            </div>
+        @endif
+
         <div>
             <h1 class="text-3xl font-bold mt-5 mb-5">Latest Poem Feeds:</h1>
         </div>
@@ -27,4 +41,14 @@
     <div class="flex justify-center container mx-auto max-w-3xl">
         {{ $poems->render() }}
     </div><br/><br/>
+
+    <script>
+        function closeAlert(event){
+            let element = event.target;
+            while(element.nodeName !== "BUTTON"){
+                element = element.parentNode;
+            }
+            element.parentNode.parentNode.removeChild(element.parentNode);
+        }
+    </script>
 @endsection
