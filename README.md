@@ -1,7 +1,6 @@
 # PoemBook
 
-A simple Laravel application to illustrate CRUD operations on a single model.
-
+An advanced web application built with Laravel framework to illustrate CRUD operations.
 
 ## Setup/Configuration
 1. Clone repo
@@ -10,12 +9,12 @@ A simple Laravel application to illustrate CRUD operations on a single model.
 4. `$ npm run dev`
 5. `$ cp .env.example .env`
 
-
 The following settings are required:
 
 - A database connection, with username and password. 
   MySQL or MariaDB are fine. [XAMPP](https://www.apachefriends.org/index.html)
   recommended.
+- Configure database and mail in .env file, as well as setup Google and Github OAuths.
   
 ## Initialisation
 
